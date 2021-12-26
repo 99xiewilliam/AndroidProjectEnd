@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.androidproject.dao.MessagesMapper">
+    <resultMap id="MessagesResultMap" type="com.example.androidproject.entity.messages">
+        <id column="id" property="id" />
+        <result column="chatroom_id" property="chatroom_id" />
+        <result column="user_id" property="user_id" />
+        <result column="name" property="name" />
+        <result column="message" property="message" />
+        <result column="message_time" property="message_time" />
+    </resultMap>
+    <sql id="messages">
+        id, chatroom_id, user_id, `name`, message, message_time
+    </sql>
+
+    <select id="getMessages" resultType="com.example.androidproject.entity.messages">
+        select <include refid="messages" /> from messages
+        where chatroom_id = #{chatroom_id} order by message_time DESC
+    </select>
+
+    <insert id="insertMessage" parameterType="com.example.androidproject.entity.messages">
+        insert into messages(chatroom_id, user_id, name, message, message_time) values (#{chatroom_id}, #{user_id},
+                                     #{name}, #{message}, #{message_time})
+    </insert>
+</mapper>

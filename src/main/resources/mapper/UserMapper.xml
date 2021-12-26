@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.androidproject.dao.UserMapper">
+    <resultMap id="UserResultMap" type="com.example.androidproject.entity.User">
+        <id column="id" property="id" />
+        <result column="user_name" property="userName" />
+        <result column="password" property="password" />
+    </resultMap>
+    <sql id="user">
+        id, user_name, password
+    </sql>
+
+    <select id="getUser" resultType="com.example.androidproject.entity.User">
+        select <include refid="user" /> from users where user_name=#{user_name}
+                             and password=#{password}
+    </select>
+</mapper>
