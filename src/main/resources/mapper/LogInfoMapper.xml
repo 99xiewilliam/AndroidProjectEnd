@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.androidproject.dao.LogInfoMapper">
+    <resultMap id="LogInfoResultMap" type="com.example.androidproject.entity.LogInfo">
+        <id column="id" property="id" />
+        <result column="user_id" property="user_id" />
+        <result column="name" property="name" />
+        <result column="message" property="message" />
+        <result column="message_time" property="message_time" />
+    </resultMap>
+    <sql id="LogInfo">
+        id, user_id, `name`, message, message_time
+    </sql>
+
+    <select id="getLogs" resultType="com.example.androidproject.entity.LogInfo">
+        select <include refid="LogInfo" /> from logs
+        where user_id = #{user_id} order by message_time DESC
+    </select>
+
+    <insert id="insertLog" parameterType="com.example.androidproject.entity.LogInfo">
+        insert into logs(user_id, name, message, message_time) values (#{user_id}, #{name},
+                                                                           #{message}, #{message_time})
+    </insert>
+</mapper>
