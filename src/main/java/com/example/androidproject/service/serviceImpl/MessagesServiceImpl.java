@@ -61,7 +61,7 @@ public class MessagesServiceImpl implements MessagesService {
             }
 
         }
-        jsonObject.put("curent_page", page);
+        jsonObject.put("current_page", page);
         jsonObject.put("messages", jsonObjects);
         jsonObject.put("total_pages", (int)Math.ceil(messages.size() / 5.0));
 

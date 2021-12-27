@@ -1,5 +1,6 @@
 package com.example.androidproject.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.androidproject.entity.chatrooms;
 import com.example.androidproject.service.chatRoomsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,11 @@ public class chatroomsController {
     private chatRoomsService chatRoomsOfService;
 
     @GetMapping("/getChatRooms")
-    public List<chatrooms> getChatRooms() {
-        return chatRoomsOfService.getChatRooms();
+    public JSONObject getChatRooms() {
+        JSONObject jsonObject = new JSONObject();
+        List<chatrooms> chatRooms = chatRoomsOfService.getChatRooms();
+        jsonObject.put("data", chatRooms);
+        jsonObject.put("status", "OK");
+        return jsonObject;
     }
 }
