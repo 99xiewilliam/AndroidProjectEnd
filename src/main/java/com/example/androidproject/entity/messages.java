@@ -2,7 +2,6 @@ package com.example.androidproject.entity;
 
 import lombok.Data;
 
-import java.util.Date;
 
 @Data
 public class messages {

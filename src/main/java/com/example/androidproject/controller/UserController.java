@@ -16,8 +16,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/getUser")
-    public JSONObject getUser(@RequestBody User user) {
-        User userExist = userService.getUser(user.getUserName(), user.getPassword());
+    public JSONObject getUser(String userName, String password) {
+        User userExist = userService.getUser(userName, password);
         JSONObject jsonObject = new JSONObject();
         if (userExist != null) {
             jsonObject.put("status", "OK");
